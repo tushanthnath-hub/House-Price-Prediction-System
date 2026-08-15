@@ -1,7 +1,7 @@
-# ============================================================
+
 # House Price Prediction System
 # Tools: Python, Scikit-learn, Pandas, Matplotlib, Seaborn
-# ============================================================
+
 
 import pandas as pd
 import numpy as np
@@ -22,9 +22,9 @@ from sklearn.metrics import (
 import joblib
 
 
-# ─────────────────────────────────────────────
+
 # 1. Generate Synthetic Housing Dataset
-# ─────────────────────────────────────────────
+
 
 def generate_dataset(n_samples: int = 5000, random_state: int = 42) -> pd.DataFrame:
     rng = np.random.default_rng(random_state)
@@ -99,9 +99,8 @@ def generate_dataset(n_samples: int = 5000, random_state: int = 42) -> pd.DataFr
     return df
 
 
-# ─────────────────────────────────────────────
 # 2. Data Preprocessing & Feature Scaling
-# ─────────────────────────────────────────────
+
 
 def preprocess(df: pd.DataFrame):
     df = df.copy()
@@ -130,9 +129,9 @@ def preprocess(df: pd.DataFrame):
     return X, y, scaler
 
 
-# ─────────────────────────────────────────────
+
 # 3. Feature Engineering
-# ─────────────────────────────────────────────
+
 
 def engineer_features(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
@@ -149,9 +148,9 @@ def engineer_features(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-# ─────────────────────────────────────────────
+
 # 4. Model Training & Evaluation
-# ─────────────────────────────────────────────
+
 
 def evaluate_model(name, model, X_train, X_test, y_train, y_test) -> dict:
     model.fit(X_train, y_train)
@@ -191,9 +190,8 @@ def train_all_models(X_train, X_test, y_train, y_test) -> dict:
     return results
 
 
-# ─────────────────────────────────────────────
 # 5. Hyperparameter Tuning
-# ─────────────────────────────────────────────
+
 
 def tune_decision_tree(X_train, y_train) -> DecisionTreeRegressor:
     param_grid = {
@@ -227,9 +225,9 @@ def tune_random_forest(X_train, y_train) -> RandomForestRegressor:
     return grid.best_estimator_
 
 
-# ─────────────────────────────────────────────
+
 # 6. Visualisations
-# ─────────────────────────────────────────────
+
 
 def plot_all(df_raw, results, y_test, X_test, feature_names, output_dir):
     os.makedirs(output_dir, exist_ok=True)
@@ -366,9 +364,8 @@ def predict_price(model, scaler, feature_names, sample: dict) -> float:
     return round(prediction, 2)
 
 
-# ─────────────────────────────────────────────
 # 8. Main Pipeline
-# ─────────────────────────────────────────────
+
 
 def main():
     OUTPUT_DIR = "outputs/house_price"
